@@ -270,6 +270,410 @@ https://tldr.sh/
 
 ---
 
+
+
+
+
+# 🐧 Essential Linux Commands Guide
+
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
+[![Shell](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://ubuntu.com/)
+[![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)](https://www.debian.org/)
+[![Fedora](https://img.shields.io/badge/Fedora-294172?style=for-the-badge&logo=fedora&logoColor=white)](https://fedoraproject.org/)
+[![Arch](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://archlinux.org/)
+[![OpenSUSE](https://img.shields.io/badge/openSUSE-73BA25?style=for-the-badge&logo=opensuse&logoColor=white)](https://www.opensuse.org/)
+[![Red Hat](https://img.shields.io/badge/Red_Hat-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)](https://www.redhat.com/)
+
+> A comprehensive collection of essential Linux commands for system administrators, developers, and power users.
+
+## 📋 Table of Contents
+
+- [Linux Distributions](#linux-distributions)
+- [File Management](#file-management)
+- [System Information](#system-information)
+- [Process Management](#process-management)
+- [Network Management](#network-management)
+- [User Management](#user-management)
+- [Package Management](#package-management)
+- [Security](#security)
+- [System Monitoring](#system-monitoring)
+- [Text Processing](#text-processing)
+- [Shell Utilities](#shell-utilities)
+- [Tips & Tricks](#tips--tricks)
+- [Resources](#resources)
+
+---
+
+## 🐧 Linux Distributions
+
+| Distribution | Logo | Description |
+|--------------|------|-------------|
+| Ubuntu | ![Ubuntu](https://assets.ubuntu.com/v1/25553955-ubuntu-logo32.png) | Popular distribution based on Debian, known for ease of use |
+| Debian | ![Debian](https://www.debian.org/Pics/debian-logo-64x64.png) | One of the oldest Linux distributions, known for stability |
+| Fedora | ![Fedora](https://fedoraproject.org/static/logo/favicon.ico) | Community distribution sponsored by Red Hat |
+| Arch | ![Arch](https://archlinux.org/static/logos/archlinux-logo-dark-scalable.svg) | Simple, lightweight distribution following KISS principles |
+| openSUSE | ![openSUSE](https://www.opensuse.org/favicon.ico) | German-origin distribution with YaST configuration tool |
+| Red Hat | ![Red Hat](https://www.redhat.com/cms/assets/logo/red-hat-logo-2.svg) | Enterprise-focused distribution |
+
+---
+
+## 📁 File Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `ls` | List directory contents | `ls -la` |
+| `cd` | Change directory | `cd /home/user` |
+| `pwd` | Print working directory | `pwd` |
+| `mkdir` | Create directory | `mkdir new_directory` |
+| `rmdir` | Remove empty directory | `rmdir empty_directory` |
+| `rm` | Remove files or directories | `rm -rf directory` |
+| `cp` | Copy files or directories | `cp source.txt destination.txt` |
+| `mv` | Move or rename files | `mv old_name.txt new_name.txt` |
+| `touch` | Create empty file or update timestamp | `touch new_file.txt` |
+| `find` | Search for files | `find / -name filename` |
+| `locate` | Find files by name | `locate filename` |
+| `du` | Disk usage of files | `du -sh directory` |
+| `df` | Disk free space | `df -h` |
+| `tar` | Archive utility | `tar -czvf archive.tar.gz directory/` |
+| `zip` | Package and compress files | `zip archive.zip file1 file2` |
+| `unzip` | Unzip files | `unzip archive.zip` |
+
+---
+
+## 🖥️ System Information
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `uname` | Print system information | `uname -a` |
+| `hostname` | Display system hostname | `hostname` |
+| `uptime` | Show system uptime | `uptime` |
+| `free` | Display memory usage | `free -h` |
+| `lscpu` | Display CPU information | `lscpu` |
+| `lsblk` | List block devices | `lsblk` |
+| `lspci` | List PCI devices | `lspci` |
+| `lsusb` | List USB devices | `lsusb` |
+| `dmidecode` | Hardware information | `sudo dmidecode` |
+| `journalctl` | Query system logs | `journalctl -xe` |
+| `dmesg` | Print kernel messages | `dmesg | grep -i error` |
+| `date` | Display system date and time | `date` |
+| `cal` | Display calendar | `cal -y` |
+| `timedatectl` | Control system time | `timedatectl status` |
+
+---
+
+## ⚙️ Process Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `ps` | Report process status | `ps aux` |
+| `top` | Display processes | `top` |
+| `htop` | Interactive process viewer | `htop` |
+| `kill` | Terminate processes | `kill -9 PID` |
+| `killall` | Kill processes by name | `killall process_name` |
+| `pkill` | Kill processes by name or attribute | `pkill -f process_name` |
+| `jobs` | Display active jobs | `jobs` |
+| `bg` | Resume jobs in background | `bg %1` |
+| `fg` | Bring job to foreground | `fg %1` |
+| `nohup` | Run command immune to hangups | `nohup command &` |
+| `nice` | Run command with modified scheduling priority | `nice -n 10 command` |
+| `renice` | Alter priority of running processes | `renice 10 -p PID` |
+| `systemctl` | Control systemd system and service manager | `systemctl status service_name` |
+| `service` | Run a System V init script | `service service_name status` |
+
+---
+
+## 🌐 Network Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `ip` | Show/manipulate routing and devices | `ip addr show` |
+| `ifconfig` | Configure network interfaces | `ifconfig eth0` |
+| `ping` | Send ICMP ECHO_REQUEST to network hosts | `ping google.com` |
+| `traceroute` | Print route packets trace to network host | `traceroute google.com` |
+| `netstat` | Print network connections | `netstat -tuln` |
+| `ss` | Another utility to investigate sockets | `ss -tuln` |
+| `dig` | DNS lookup utility | `dig google.com` |
+| `nslookup` | Query Internet name servers | `nslookup google.com` |
+| `host` | DNS lookup utility | `host google.com` |
+| `curl` | Transfer data from or to a server | `curl https://example.com` |
+| `wget` | Network downloader | `wget https://example.com/file` |
+| `ssh` | OpenSSH SSH client | `ssh user@hostname` |
+| `scp` | Secure copy | `scp file.txt user@hostname:/path/` |
+| `rsync` | Remote file copy tool | `rsync -av source/ destination/` |
+| `iptables` | Administration tool for IPv4 packet filtering | `sudo iptables -L` |
+| `ufw` | Uncomplicated Firewall | `sudo ufw status` |
+| `firewall-cmd` | Firewall management tool | `sudo firewall-cmd --list-all` |
+
+---
+
+## 👤 User Management
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `whoami` | Print effective user ID | `whoami` |
+| `id` | Print user and group information | `id` |
+| `who` | Show who is logged on | `who` |
+| `w` | Show who is logged on and what they are doing | `w` |
+| `last` | Show listing of last logged in users | `last` |
+| `useradd` | Create a new user | `sudo useradd -m username` |
+| `usermod` | Modify a user account | `sudo usermod -aG group username` |
+| `userdel` | Delete a user account | `sudo userdel -r username` |
+| `passwd` | Change user password | `passwd username` |
+| `groupadd` | Create a new group | `sudo groupadd groupname` |
+| `groupmod` | Modify a group definition | `sudo groupmod -n newname oldname` |
+| `groupdel` | Delete a group | `sudo groupdel groupname` |
+| `su` | Change user ID or become superuser | `su - username` |
+| `sudo` | Execute a command as another user | `sudo command` |
+| `visudo` | Edit the sudoers file | `sudo visudo` |
+| `chown` | Change file owner and group | `sudo chown user:group file` |
+| `chmod` | Change file permissions | `chmod 755 file` |
+
+---
+
+## 📦 Package Management
+
+### Debian/Ubuntu
+| Command | Description | Example |
+|---------|-------------|---------|
+| `apt` | Command-line interface for the package management system | `sudo apt update && sudo apt upgrade` |
+| `apt-get` | Package handling utility | `sudo apt-get install package_name` |
+| `apt-cache` | Query the APT cache | `apt-cache search package_name` |
+| `dpkg` | Package manager for Debian | `sudo dpkg -i package.deb` |
+| `snap` | Package management system | `sudo snap install package_name` |
+
+### Red Hat/CentOS/Fedora
+| Command | Description | Example |
+|---------|-------------|---------|
+| `yum` | Package management utility | `sudo yum install package_name` |
+| `dnf` | Package manager | `sudo dnf install package_name` |
+| `rpm` | RPM Package Manager | `sudo rpm -i package.rpm` |
+
+### Arch Linux
+| Command | Description | Example |
+|---------|-------------|---------|
+| `pacman` | Package management utility | `sudo pacman -S package_name` |
+| `yay` | Yet Another Yogurt - AUR helper | `yay -S package_name` |
+
+### openSUSE
+| Command | Description | Example |
+|---------|-------------|---------|
+| `zypper` | Command-line package manager | `sudo zypper install package_name` |
+| `rpm` | RPM Package Manager | `sudo rpm -i package.rpm` |
+
+---
+
+## 🔒 Security
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `sudo` | Execute a command as another user | `sudo command` |
+| `su` | Change user ID or become superuser | `su -` |
+| `passwd` | Change user password | `passwd` |
+| `chmod` | Change file permissions | `chmod 600 private_file` |
+| `chown` | Change file owner and group | `sudo chown user:group file` |
+| `gpg` | GNU privacy guard | `gpg --encrypt --recipient user file` |
+| `ssh-keygen` | Generate SSH keys | `ssh-keygen -t rsa -b 4096` |
+| `openssl` | OpenSSL command line tool | `openssl rand -base64 32` |
+| `fail2ban-client` | Configure fail2ban | `sudo fail2ban-client status` |
+| `ufw` | Uncomplicated Firewall | `sudo ufw enable` |
+| `iptables` | Packet filtering and NAT | `sudo iptables -L` |
+| `firewall-cmd` | Firewall management | `sudo firewall-cmd --list-all` |
+| `selinux` | Security-Enhanced Linux | `getenforce` |
+| `auditd` | Audit subsystem | `sudo auditctl -l` |
+| `aureport` | Generate summary reports from audit logs | `sudo aureport -m` |
+
+---
+
+## 📊 System Monitoring
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `top` | Display Linux processes | `top` |
+| `htop` | Interactive process viewer | `htop` |
+| `iotop` | Simple top-like I/O monitor | `sudo iotop` |
+| `vmstat` | Report virtual memory statistics | `vmstat 5` |
+| `iostat` | Report CPU and I/O statistics | `iostat -x 5` |
+| `sar` | Collect, report, or save system activity information | `sar -u 5` |
+| `netstat` | Print network connections | `netstat -tuln` |
+| `ss` | Utility to investigate sockets | `ss -tuln` |
+| `lsof` | List open files | `lsof -i :80` |
+| `nethogs` | Net top tool | `sudo nethogs` |
+| `nload` | Network traffic monitor | `nload` |
+| `glances` | Glances an eye on your system | `glances` |
+| `atop` | Advanced System & Process Monitor | `atop` |
+| `ps` | Report process status | `ps aux` |
+| `free` | Display amount of free and used memory | `free -h` |
+| `df` | Report file system disk space usage | `df -h` |
+| `du` | Estimate file space usage | `du -sh *` |
+
+---
+
+## 📝 Text Processing
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `cat` | Concatenate files and print on standard output | `cat file.txt` |
+| `less` | View file content page by page | `less file.txt` |
+| `more` | View file content page by page | `more file.txt` |
+| `head` | Output the first part of files | `head -n 10 file.txt` |
+| `tail` | Output the last part of files | `tail -f log_file.txt` |
+| `grep` | Search text using patterns | `grep "pattern" file.txt` |
+| `egrep` | Search text using extended patterns | `egrep "pattern1|pattern2" file.txt` |
+| `fgrep` | Search text using fixed strings | `fgrep "pattern" file.txt` |
+| `sed` | Stream editor for filtering and transforming text | `sed 's/old/new/g' file.txt` |
+| `awk` | Pattern scanning and processing language | `awk '{print $1}' file.txt` |
+| `cut` | Remove sections from each line of files | `cut -d':' -f1 /etc/passwd` |
+| `sort` | Sort lines of text files | `sort file.txt` |
+| `uniq` | Report or omit repeated lines | `uniq file.txt` |
+| `wc` | Print newline, word, and byte counts | `wc -l file.txt` |
+| `tr` | Translate or delete characters | `tr 'a-z' 'A-Z' < file.txt` |
+| `tee` | Read from standard input and write to standard output and files | `command | tee file.txt` |
+| `diff` | Compare files line by line | `diff file1.txt file2.txt` |
+| `vim` | Vi IMproved, a programmer's text editor | `vim file.txt` |
+| `nano` | Nano's ANOther editor, an enhanced free Pico clone | `nano file.txt` |
+
+---
+
+## 🛠️ Shell Utilities
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `history` | Display or manipulate the history list | `history | grep command` |
+| `alias` | Define or display aliases | `alias ll='ls -alF'` |
+| `unalias` | Remove alias definitions | `unalias ll` |
+| `export` | Set export attribute for shell variables | `export VAR=value` |
+| `env` | Display environment variables | `env` |
+| `echo` | Display a line of text | `echo $PATH` |
+| `printf` | Format and print data | `printf "Hello, %s\n" "World"` |
+| `read` | Read a line from standard input | `read -p "Enter your name: " name` |
+| `source` | Execute commands from a file in the current shell | `source ~/.bashrc` |
+| `exec` | Execute commands and replace the current shell | `exec command` |
+| `exit` | Exit the shell | `exit` |
+| `sleep` | Delay for a specified amount of time | `sleep 5` |
+| `wait` | Wait for process completion | `wait $PID` |
+| `trap` | Execute commands when the shell receives signals | `trap 'echo Exiting' EXIT` |
+| `jobs` | Display status of jobs in the current session | `jobs` |
+| `fg` | Run a job in the foreground | `fg %1` |
+| `bg` | Run a job in the background | `bg %1` |
+| `nohup` | Run command immune to hangups | `nohup command &` |
+| `screen` | Screen manager with VT100/ANSI terminal emulation | `screen -S session_name` |
+| `tmux` | Terminal multiplexer | `tmux new -s session_name` |
+
+---
+
+## 💡 Tips & Tricks
+
+### Command Line Shortcuts
+| Shortcut | Description |
+|----------|-------------|
+| `Ctrl + C` | Stop current command |
+| `Ctrl + Z` | Suspend current command |
+| `Ctrl + D` | Logout of current session |
+| `Ctrl + L` | Clear terminal |
+| `Ctrl + A` | Move to beginning of line |
+| `Ctrl + E` | Move to end of line |
+| `Ctrl + R` | Search command history |
+| `Ctrl + G` | Exit history search |
+| `!!` | Execute last command |
+| `!$` | Last argument of previous command |
+| `!*` | All arguments of previous command |
+| `ESC + .` | Cycle through previous command arguments |
+| `Tab` | Auto-complete files and commands |
+| `Up/Down arrows` | Navigate command history |
+
+### Useful One-Liners
+```bash
+# Find and delete files older than 30 days
+find /path/to/files -type f -mtime +30 -delete
+
+# Count lines of code in a project
+find . -name "*.py" | xargs wc -l
+
+# Monitor log file in real-time
+tail -f /var/log/syslog | grep ERROR
+
+# Generate a random password
+openssl rand -base64 32
+
+# Find the largest files in a directory
+du -a /path | sort -nr | head -n 10
+
+# Check system load
+uptime && echo && free -h && echo && df -h
+
+# Extract all archives
+extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar x $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+```
+
+---
+
+## 📚 Resources
+
+- [Linux Documentation Project](https://tldp.org/)
+- [The Linux Command Line](http://linuxcommand.org/tlcl.php)
+- [Bash Reference Manual](https://www.gnu.org/software/bash/manual/)
+- [Arch Linux Wiki](https://wiki.archlinux.org/)
+- [Ubuntu Documentation](https://help.ubuntu.com/)
+- [Red Hat Documentation](https://access.redhat.com/documentation/en-us/)
+- [Linux Man Pages Online](https://man7.org/linux/man-pages/)
+- [Explain Shell](https://explainshell.com/)
+- [Commandlinefu](https://www.commandlinefu.com/)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## ⭐ Support
+
+If you find this repository useful, please consider giving it a star ⭐
+
+---
+
+*Made with ❤️ for the Linux community*
+
+
+
+
+
+
+
+
 ## 🤝 Contributing
 
 Open issues or pull requests at:  
