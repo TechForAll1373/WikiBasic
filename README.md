@@ -629,6 +629,8 @@ extract() {
 
 ---
 
+---
+
 ```markdown
 # 🔐 **ULTRA-PROFESSIONAL ENCRYPTION & DECRYPTION OPERATIONAL FRAMEWORK**  
 ## 📥 **Comprehensive, Modern, and Specialized Cryptographic Ecosystem for High-Assurance Environments**  
@@ -648,7 +650,7 @@ Designed for professionals managing PII, PHI, IP, classified analogs, or financi
 ### 🔑 **1. Symmetric Encryption (AES, ChaCha20, Serpent)**
 
 #### **AES-256-GCM (Authenticated Encryption)**  
-```
+```bash
 # Generate random 256-bit key + 96-bit nonce
 dd if=/dev/urandom of=key.bin bs=32 count=1
 dd if=/dev/urandom of=nonce.bin bs=12 count=1
@@ -663,14 +665,14 @@ openssl enc -aes-256-gcm -d -in sensitive.dat.gcm -out recovered.dat \
 ```
 
 #### **ChaCha20-Poly1305 (RFC 8439 – High-Speed, Side-Channel Resistant)**  
-```
+```bash
 # Requires OpenSSL ≥ 1.1.0 or libsodium
 echo "Secret" | openssl chacha20 -a -pbkdf2 -k "Passphrase" -out chacha.enc
 openssl chacha20 -d -a -pbkdf2 -k "Passphrase" -in chacha.enc
 ```
 
 #### **Serpent-256 (AES Finalist, Higher Security Margin)**  
-```
+```bash
 # Via Linux kernel crypto API (requires cryptsetup ≥ 2.4)
 echo "data" | cryptsetup --cipher serpent-xts-plain64 --key-size 512 --hash sha512 create secure_vol /dev/loop0
 ```
@@ -680,7 +682,7 @@ echo "data" | cryptsetup --cipher serpent-xts-plain64 --key-size 512 --hash sha5
 ### 🔒 **2. Asymmetric Cryptography (RSA, ECC, PQC Candidates)**
 
 #### **Ed25519 (High-Speed ECC Signing)**  
-```
+```bash
 # Generate key
 openssl genpkey -algorithm Ed25519 -out ed25519.priv.pem
 openssl pkey -in ed25519.priv.pem -pubout -out ed25519.pub.pem
@@ -691,7 +693,7 @@ echo "Payload" | openssl pkeyutl -verify -pubin -inkey ed25519.pub.pem -sigfile 
 ```
 
 #### **RSA-8192 (Ultra-Long-Term Confidentiality)**  
-```
+```bash
 openssl genrsa -out rsa8192.pem 8192
 openssl rsa -in rsa8192.pem -out rsa8192.pub.pem -pubout
 ```
@@ -700,7 +702,7 @@ openssl rsa -in rsa8192.pem -out rsa8192.pub.pem -pubout
 > **⚠️ Experimental but mission-critical for quantum resilience**
 
 Install `liboqs` and `openssl` with OQS support:
-```
+```bash
 git clone --recursive https://github.com/open-quantum-safe/openssl.git
 cd openssl
 ./Configure no-shared linux-x86_64 -DOQS_DEFAULT_GROUPS="p384_kyber768"
@@ -708,16 +710,17 @@ make -j$(nproc)
 ```
 
 Usage:
-``
+```bash
 ./apps/openssl genpkey -algorithm kyber768 -out kyber768.priv
 ./apps/openssl pkeyutl -encrypt -in secret.txt -inkey kyber768.priv -out secret.kyber
 ```
 
-```
+---
+
 ### 🧬 **3. Hybrid Encryption (ECIES, PGP Modern Mode)**
 
 #### **GPG with AEAD & Curve25519 (RFC 4880bis)**  
-```
+```bash
 # Enable modern defaults (~/.gnupg/gpg.conf)
 echo "personal-cipher-preferences AES256 CHACHA20" >> ~/.gnupg/gpg.conf
 echo "personal-digest-preferences SHA512" >> ~/.gnupg/gpg.conf
@@ -747,17 +750,16 @@ gpg --cipher-algo CHACHA20 --compress-algo 1 --aead-mode EAX \
 | **rclone**    | 70+ cloud backends + encryption   | ✅ | ✅ | ✅ | ✅ (server-side hash) | `sudo xbps-install rclone` |
 
 #### **aria2 with Metalink & BLAKE3 Verification**  
-```
+```bash
 aria2c --checksum=sha-256=abc123... --max-connection-per-server=8 \
        --file-allocation=none --continue=true \
        https://example.com/encrypted_payload.bin
 ```
 
-#### rclone with Client-Side Encryption**  
-```
+#### **rclone with Client-Side Encryption**  
+```bash
 rclone config  # Setup crypt remote
 rclone copy sensitive/ remote:cipher-bucket --crypt-password='your_key'
-
 ```
 
 ---
@@ -765,7 +767,7 @@ rclone copy sensitive/ remote:cipher-bucket --crypt-password='your_key'
 ### 🔍 **2. Cryptographic Hashing & Integrity Chains**
 
 #### **SHA3-512 / BLAKE3 (Modern Hash Standards)**  
-```
+```bash
 # SHA3-512 (via openssl ≥ 3.0)
 openssl sha3-512 document.pdf
 
@@ -774,7 +776,7 @@ b3sum document.pdf  # Install: sudo xbps-install b3sum
 ```
 
 #### **Minisign (Ed25519-based Signing – Simpler than GPG)**  
-```
+```bash
 # Generate key
 minisign -G -p minisign.pub -s minisign.key
 
@@ -794,14 +796,14 @@ minisign -V -p minisign.pub -m release.tar.gz -x release.tar.gz.minisig
 ### 🔐 **LUKS2 with Argon2, FIDO2, and TPM2**
 
 #### **LUKS2 + Argon2id (Memory-Hard KDF)**  
-```
+```bash
 sudo cryptsetup luksFormat --type luks2 \
   --pbkdf argon2id --iter-time 5000 --key-size 512 \
   --cipher aes-xts-plain64 /dev/nvme0n1p3
 ```
 
 #### **TPM2-Sealed LUKS Unlock (Auto-decrypt on trusted boot)**  
-```
+```bash
 tpm2_createprimary -C o -g sha256 -G ecc -c primary.ctx
 tpm2_create -g sha256 -G aes -u key.pub -r key.priv -C primary.ctx
 tpm2_load -C primary.ctx -u key.pub -r key.priv -c key.ctx
@@ -816,7 +818,7 @@ sudo cryptsetup open --key-file luks.key /dev/sdX secure
 ---
 
 ### 🧊 **VeraCrypt CLI (Cross-Platform Container Encryption)**  
-```
+```bash
 # Create hidden volume
 veracrypt --create --volume-type=hidden --size=100M \
   --password=Secr3t! --encryption=AES-Twofish-Serpent \
@@ -842,7 +844,7 @@ veracrypt --mount container.hc --password=Secr3t! --slot=1
 | **Syncthing + TLS** | syncthing | GUI/API-based; auto-encrypts in transit/at rest |
 
 #### **Magic Wormhole (E2E Encrypted File Transfer)**  
-```
+```bash
 wormhole send --code-length=3 sensitive.zip
 # Recipient: wormhole receive
 ```
@@ -861,7 +863,7 @@ wormhole send --code-length=3 sensitive.zip
 - **SIG**: Dilithium, SPHINCS+, Falcon  
 
 #### **Build OQS-OpenSSL on Void Linux**  
-```
+```bash
 sudo xbps-install -S base-devel cmake git
 git clone --branch OpenSSL_3_0_0_stable https://github.com/open-quantum-safe/openssl.git
 cd openssl
@@ -871,7 +873,7 @@ sudo make install
 ```
 
 #### **Test Kyber Encryption**  
-```
+```bash
 ./apps/openssl genpkey -algorithm kyber1024 -out kyber1024.priv
 echo "Top Secret" | ./apps/openssl pkeyutl -encrypt -inkey kyber1024.priv -out quantum.enc
 ```
@@ -881,7 +883,7 @@ echo "Top Secret" | ./apps/openssl pkeyutl -encrypt -inkey kyber1024.priv -out q
 ## 🧰 **VI. AUTOMATED CRYPTO OPERATIONS SCRIPTING**
 
 ### 📜 **Secure Bash Template for Encryption Pipelines**
-
+```bash
 #!/bin/bash
 set -euo pipefail
 IFS=$'\n\t'
@@ -958,24 +960,8 @@ This reference architecture provides a **complete, field-tested, and future-awar
 > 📩 *Personal technical collaboration only. Zero tolerance for unauthorized redistribution.*
 
 ---
+```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
 
 ## ⭐ Support
 
